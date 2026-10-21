@@ -452,7 +452,7 @@ try{const r=await fetch(SYNC_URL+syncKey(c)+"?_="+Date.now(),{cache:"no-store"})
 const before=JSON.stringify(S);if(remote&&remote.S){S=mergeS(S,remote.S);const D=S.dc;rebuild();localStorage.setItem(K,JSON.stringify(S))}
 const out=JSON.stringify({app:"safemlo",v:2,at:Date.now(),S:{dc:S.dc,dm:S.dm,missed:S.missed,bm:S.bm,conf:S.conf,fc:S.fc,plan:S.plan,ts:S.ts,exams:S.exams}});
 const remoteSame=remote&&JSON.stringify(mergeS(remote.S,S))===JSON.stringify(remote.S);
-if(!remoteSame){const pr=await fetch(SYNC_URL+"update/",{method:"POST",body:new URLSearchParams({key:syncKey(c),value:out}),keepalive:out.length<60000});const j=await pr.json();if(j.status!=1)throw new Error("write failed")}
+if(!remoteSame){const pr=await fetch(SYNC_URL+"update",{method:"POST",body:new URLSearchParams({key:syncKey(c),value:out}),keepalive:out.length<60000});const j=await pr.json();if(j.status!=1)throw new Error("write failed")}
 localStorage.removeItem(SK+"_dirty");setStatus("Synced "+new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"}));
 if(JSON.stringify(S)!==before&&!document.querySelector(".opt,#ma,#fl2,#bk .btn"))nav(curTab||"dash")}
 catch(e){setStatus("Sync failed (will retry): "+e.message)}finally{syncBusy=false}}
