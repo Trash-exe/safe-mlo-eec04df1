@@ -1,22 +1,75 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>SAFE MLO Prep</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1f4e79"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="MLO Prep"><style>
-:root{--b:#1f4e79;--g:#1e8e3e;--r:#c62828;--bg:#f4f6f9}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:#222;line-height:1.45}
-header{background:var(--b);color:#fff;padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top))}header h1{margin:0;font-size:1.2rem}
-nav{display:flex;overflow-x:auto;background:#163a5c}nav button{flex:1;min-width:84px;background:none;border:0;color:#cfe0f1;padding:10px 6px;font-size:.9rem;cursor:pointer}nav button.on{color:#fff;border-bottom:3px solid #ffd54f}
-main{max-width:860px;margin:auto;padding:14px}.card{background:#fff;border-radius:10px;padding:14px;margin-bottom:12px;box-shadow:0 1px 3px #0002}
-.btn{background:var(--b);color:#fff;border:0;border-radius:8px;padding:10px 14px;margin:4px 4px 4px 0;font-size:.95rem;cursor:pointer}.btn.alt{background:#607d8b}
-.opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid #ccd;border-radius:8px;padding:10px;margin:6px 0;font-size:1rem;cursor:pointer}
-.opt.c{border-color:var(--g);background:#e8f5e9}.opt.w{border-color:var(--r);background:#ffebee}.opt.sel{border-color:var(--b);background:#e3f2fd}
-.bar{height:10px;background:#dde;border-radius:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--g)}
-table{width:100%;border-collapse:collapse}td,th{padding:6px;border-bottom:1px solid #eee;text-align:left;font-size:.92rem}
-.tag{font-size:.75rem;background:#e3eaf3;color:var(--b);padding:2px 7px;border-radius:9px}.exp{background:#fffde7;padding:10px;border-radius:8px;margin-top:8px}
-details{background:#fff;border-radius:10px;margin-bottom:8px;padding:10px 14px;box-shadow:0 1px 3px #0002}summary{font-weight:600;cursor:pointer}
-.timer{font-weight:700;font-size:1.1rem}.grid{display:flex;flex-wrap:wrap;gap:4px}.grid b{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:5px;background:#dde;font-size:.75rem;cursor:pointer}.grid b.a{background:#90caf9}.grid b.f{outline:2px solid orange}
-select{padding:8px;font-size:1rem;border-radius:6px}.pass{color:var(--g)}.fail{color:var(--r)}
+<title>SAFE MLO Prep</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#0f2a4a"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="MLO Prep"><style>:root{--navy:#0f2a4a;--navy2:#16385f;--teal:#0fb5a6;--teal2:#0a8f84;--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--bg:#f3f6fb;--card:#fff;--text:#0f1d2e;--mute:#5b6b80;--line:#e3e9f2;--soft:#eef3f9;--sel:#e6f7f5;--okbg:#e9f9ef;--badbg:#fdecec;--expbg:#f2f7ff;--sh:0 1px 2px rgba(15,42,74,.06),0 8px 24px rgba(15,42,74,.08);--r:16px}
+[data-theme=dark]{--bg:#0b1220;--card:#121b2d;--text:#e6edf7;--mute:#93a3b8;--line:#22304a;--soft:#18233a;--sel:#0f3a3a;--okbg:#0f2f1f;--badbg:#3a1416;--expbg:#152238;--sh:0 1px 2px #0006,0 8px 24px #0005}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+h1,h2,h3{letter-spacing:-.01em;line-height:1.25}h2{font-size:1.35rem;margin:.2em 0 .6em}h3{font-size:1.1rem;margin:.3em 0 .6em}
+.shell{display:flex;min-height:100vh;background:linear-gradient(90deg,#0b2140 248px,transparent 248px)}.btn svg{width:18px;height:18px;flex:none}.btn{white-space:nowrap}
+aside{width:248px;flex:none;background:linear-gradient(180deg,var(--navy),#0b2140);color:#fff;position:sticky;top:0;height:100vh;padding:22px 14px;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:0 8px 22px;font-weight:800;font-size:1.1rem}.brand .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--teal),#3dd6c6);display:grid;place-items:center;color:var(--navy);font-weight:900}
+.brand small{display:block;font-weight:500;opacity:.7;font-size:.75rem}
+#nav{display:flex;flex-direction:column;gap:4px}#nav button{display:flex;align-items:center;gap:12px;background:none;border:0;color:#c5d3e6;padding:11px 12px;border-radius:12px;font:inherit;font-size:.95rem;font-weight:500;cursor:pointer;text-align:left;transition:background .2s,color .2s}
+#nav button svg{width:20px;height:20px;flex:none}#nav button:hover{background:#ffffff12;color:#fff}#nav button.on{background:#ffffff1c;color:#fff;box-shadow:inset 3px 0 0 var(--teal)}#nav button.on svg{color:var(--teal)}
+.side-foot{margin-top:auto;font-size:.8rem;opacity:.7;padding:8px}
+.content{flex:1;min-width:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 28px;position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px)}
+.topbar h1{margin:0;font-size:1.25rem}#cd{color:var(--mute);font-size:.85rem}
+.iconbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);display:grid;place-items:center;cursor:pointer;box-shadow:var(--sh)}.iconbtn svg{width:20px;height:20px}
+main{max-width:1040px;margin:0 auto;padding:6px 28px 40px}
+#app.anim{animation:fadeUp .35s ease}@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border-radius:var(--r);padding:22px;margin-bottom:18px;box-shadow:var(--sh);border:1px solid var(--line);counter-reset:opt}
+.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;border:0;border-radius:12px;padding:12px 18px;margin:6px 8px 6px 0;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(15,181,166,.3);transition:transform .15s,box-shadow .15s,filter .15s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.05)}.btn:active{transform:translateY(0)}
+.btn.alt{background:var(--soft);color:var(--text);box-shadow:none;border:1px solid var(--line)}.btn.navy{background:var(--navy);box-shadow:none}
+.opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--card);color:var(--text);border:2px solid var(--line);border-radius:14px;padding:16px 18px;margin:10px 0;font:inherit;font-size:1.02rem;cursor:pointer;transition:border-color .15s,background .15s,transform .1s;counter-increment:opt}
+.opt::before{content:counter(opt,upper-alpha);flex:none;width:32px;height:32px;border-radius:10px;background:var(--soft);display:grid;place-items:center;font-weight:700;color:var(--mute);transition:all .15s}
+.opt:hover{border-color:var(--teal);transform:translateX(2px)}
+.opt.sel{border-color:var(--teal);background:var(--sel)}.opt.sel::before{background:var(--teal);color:#fff}
+.opt.c{border-color:var(--green);background:var(--okbg)}.opt.c::before{content:"✓";background:var(--green);color:#fff}
+.opt.w{border-color:var(--red);background:var(--badbg)}.opt.w::before{content:"✕";background:var(--red);color:#fff}
+.bar,.qprog{height:10px;background:var(--soft);border-radius:99px;overflow:hidden}.bar i,.qprog i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),#3dd6c6);border-radius:99px;transition:width .5s}
+.qprog{height:8px;margin:0 0 18px}
+table{width:100%;border-collapse:collapse}td,th{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;font-size:.92rem}th{color:var(--mute);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+.tag{display:inline-block;font-size:.75rem;font-weight:600;background:var(--soft);color:var(--teal2);padding:4px 10px;border-radius:99px;margin:0 4px 4px 0;border:0;font-family:inherit}
+[data-theme=dark] .tag{color:#5fe3d5}button.tag{cursor:pointer}button.tag.on{background:var(--teal);color:#fff}
+.exp{background:var(--expbg);padding:16px 18px;border-radius:14px;margin:14px 0 6px;border-left:4px solid var(--teal)}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;padding:14px 18px;box-shadow:var(--sh)}summary{font-weight:600;cursor:pointer}details[open] summary{color:var(--teal2);margin-bottom:6px}
+.timer{font-weight:800;font-size:1.1rem;font-variant-numeric:tabular-nums;background:var(--soft);padding:6px 12px;border-radius:10px}
+.grid{display:flex;flex-wrap:wrap;gap:6px}.grid b{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:9px;background:var(--soft);font-size:.8rem;cursor:pointer;font-weight:600}.grid b.a{background:var(--teal);color:#fff}.grid b.f{outline:2px solid var(--amber)}
+select,input[type=text],input:not([type]),input[inputmode]{padding:11px 12px;font:inherit;font-size:1rem;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text)}
+input[type=checkbox],input[type=radio]{accent-color:var(--teal);width:18px;height:18px;vertical-align:-3px}
+.pass{color:var(--green)}.fail{color:var(--red)}small{color:var(--mute)}code{background:var(--soft);padding:3px 8px;border-radius:8px}
+.cols{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.cols>.card{margin:0}.s12{grid-column:span 12}.s8{grid-column:span 8}.s6{grid-column:span 6}.s4{grid-column:span 4}
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy2) 60%,#11506b);color:#fff;border:0;display:flex;gap:26px;align-items:center}
+.hero small,.hero p{color:#c9d7ea}.hero h2{color:#fff}
+.gauge{flex:none;position:relative;width:180px;height:180px}.gauge svg{transform:rotate(-90deg)}.gauge .lbl{position:absolute;inset:0;display:grid;place-content:center;text-align:center}.gauge b{font-size:2.6rem;font-weight:800;line-height:1}.gauge span{font-size:.8rem;opacity:.8}
+.ring circle{transition:stroke-dashoffset .8s ease}
+.stat{display:flex;align-items:center;gap:14px}.stat .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:1.4rem;background:var(--soft)}.stat b{font-size:1.6rem;font-weight:800;display:block;line-height:1.1}.stat small{display:block}
+.topic{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}.topic:last-child{border:0}.topic .nm{flex:1;min-width:0}.topic .nm b{display:block;font-weight:600}
+.mini{position:relative;width:56px;height:56px;flex:none}.mini svg{transform:rotate(-90deg)}.mini span{position:absolute;inset:0;display:grid;place-items:center;font-size:.78rem;font-weight:700}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;color:var(--mute);font-size:.88rem}
+.qtext{font-size:1.2rem;font-weight:600;margin:6px 0 14px;line-height:1.45}
+.flip{perspective:1400px;margin:8px 0 16px;cursor:pointer}.flip .in{position:relative;min-height:260px;transition:transform .6s cubic-bezier(.3,.7,.2,1);transform-style:preserve-3d}.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;overflow:auto;box-shadow:var(--sh)}
+.flip .f{background:linear-gradient(135deg,var(--navy),#174a72);color:#fff;font-size:1.2rem;font-weight:600}.flip .b{background:var(--card);border:2px solid var(--teal);transform:rotateY(180deg);font-size:1.02rem}
+.flip .hint{font-size:.8rem;opacity:.7;font-weight:500;margin-top:16px}
+.chart .row{display:flex;align-items:center;gap:12px;margin:10px 0}.chart .row span{width:42%;font-size:.9rem}.chart .row .bar{flex:1;height:14px}.chart .row b{width:56px;text-align:right;font-size:.9rem}
+.big{font-size:3rem;font-weight:800;margin:0}
+@media(max-width:860px){
+ aside{position:fixed;bottom:0;top:auto;left:0;right:0;width:auto;height:auto;padding:0;z-index:20;background:var(--navy);box-shadow:0 -4px 20px #0003}
+ .brand,.side-foot{display:none}
+ #nav{flex-direction:row;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+ #nav button{flex-direction:column;gap:3px;padding:6px 2px;font-size:.62rem;flex:1;min-width:0;text-align:center;border-radius:10px}#nav button.on{box-shadow:none;background:#ffffff14}
+ .topbar{padding:14px 16px;padding-top:max(14px,env(safe-area-inset-top))}.topbar h1{font-size:1.05rem}
+ main{padding:4px 14px 100px}.card{padding:18px}
+ .shell{background:none}.s8,.s6,.s4{grid-column:span 12}.topic{flex-wrap:wrap}.topic .conf{width:100%;text-align:left!important;padding-left:72px}.topic .conf br{display:none}.topic .conf small{margin-right:6px}.stat b{font-size:1.4rem}.cols{gap:14px}
+ .cols>.st{grid-column:span 4;padding:14px 10px}.st .stat{flex-direction:column;gap:6px;text-align:center}.st .ic{width:38px;height:38px;font-size:1.1rem}.st small{font-size:.72rem;line-height:1.25}
+ .hero{flex-direction:column;text-align:center}.gauge{width:160px;height:160px}
+ .qtext{font-size:1.08rem}
+}
 </style></head><body>
-<header><h1>SAFE MLO Test Prep — Neal Eaton</h1><div id="cd" style="font-size:.85rem;opacity:.9"></div></header>
-<nav id="nav"></nav><main id="app"></main>
+<div class="shell"><aside><div class="brand"><div class="logo">M</div><div>SAFE MLO Prep<small>Neal Eaton</small></div></div><nav id="nav"></nav><div class="side-foot">NMLS SAFE MLO · 125 Q · 190 min · 75% to pass</div></aside>
+<div class="content"><div class="topbar"><div><h1 id="ttl">Dashboard</h1><div id="cd"></div></div><button class="iconbtn" id="thm" title="Toggle dark mode" onclick="toggleTheme()"></button></div><main id="app"></main></div></div>
 <script>
 const Q=[];const A=(...a)=>a.forEach(x=>Q.push(x));
 A(
@@ -341,7 +394,7 @@ const PLAN=[
 "MOCK EXAM #2. Review misses; re-read weakest topic notes.",
 "Weak-topic drills (lowest % on Dashboard). Review missed until cleared. MOCK EXAM #3 if time.",
 "Light review: disclosure timing, numbers (3/7/30/120/$10k/1.5/6.5/2.25), calc sheet. Rest. Test day ~Nov 2."];
-const K="safemlo_v1";let S=JSON.parse(localStorage.getItem(K)||"null")||{st:{},missed:{},exams:[],plan:{}};S.bm=S.bm||{};S.conf=S.conf||{};S.fc=S.fc||{};S.math=S.math||{c:0,w:0};S.ts=S.ts||{};
+const K="safemlo_v1";let S=JSON.parse(localStorage.getItem(K)||"null")||{st:{},missed:{},exams:[],plan:{}};S.bm=S.bm||{};S.conf=S.conf||{};S.fc=S.fc||{};S.math=S.math||{c:0,w:0};S.ts=S.ts||{};S.days=S.days||{};
 const DEV=localStorage.getItem(K+"_dev")||(()=>{const d="d"+Math.random().toString(36).slice(2,10);localStorage.setItem(K+"_dev",d);return d})();
 if(!S.dc){S.dc={};S.dc[DEV]={};for(const id in S.st)S.dc[DEV][id]=[S.st[id].c,S.st[id].w];S.dm={};S.dm[DEV]=[S.math.c||0,S.math.w||0]}S.dm=S.dm||{};rebuild();
 const save=()=>{localStorage.setItem(K,JSON.stringify(S));if(window.syncDirty)syncDirty()};
@@ -350,11 +403,29 @@ function setKV(f,k,v){S[f][k]=v;S.ts[f+":"+k]=Date.now();save()}const $=id=>docu
 Q.forEach((q,i)=>q.id=i);
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 const esc=s=>String(s).replace(/</g,"&lt;");
-const TEST=new Date(2026,10,2);function cd(){const d=Math.ceil((TEST-new Date())/864e5);$("cd").textContent=d>0?d+" days until test (~Nov 2, 2026)":"Test day! You've got this.";}cd();
-const TABS=[["dash","Dashboard"],["notes","Notes"],["quiz","Practice"],["fc","Flashcards"],["math","Math Drill"],["mock","Exam Simulator"],["review","Missed/Saved"],["plan","Plan"]];
+const TEST=new Date(2026,10,2);function cd(){const d=Math.ceil((TEST-new Date())/864e5);$("cd").textContent=d>0?d+" days until your SAFE exam · Nov 2, 2026":"Test day — you've got this!";}cd();
+const TABS=[["dash","Dashboard"],["quiz","Practice"],["mock","Simulator"],["fc","Cards"],["math","Math"],["review","Review"],["notes","Notes"],["plan","Plan"]];
+const TTL={dash:"Dashboard",quiz:"Practice Questions",mock:"Exam Simulator",fc:"Flashcards",math:"Math Drill",review:"Missed & Saved",notes:"Study Notes",plan:"Study Plan"};
+const IP={dash:'<rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/>',
+quiz:'<circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 015.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>',
+mock:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/>',
+fc:'<rect x="2" y="6" width="16" height="13" rx="2"/><path d="M6 3h14a2 2 0 012 2v11"/>',
+math:'<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h8"/>',
+review:'<path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/>',
+notes:'<path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5z"/><path d="M4 19.5A2.5 2.5 0 006.5 22H20v-5"/>',
+plan:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/>',
+sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+moon:'<path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/>'};
+const ico=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${IP[k]}</svg>`;
+function applyTheme(){const t=localStorage.getItem(K+"_theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;const b=document.getElementById("thm");if(b)b.innerHTML=ico(t=="dark"?"sun":"moon");document.querySelector('meta[name=theme-color]').content=t=="dark"?"#0b1220":"#0f2a4a"}
+function toggleTheme(){localStorage.setItem(K+"_theme",document.documentElement.dataset.theme=="dark"?"light":"dark");applyTheme()}
+const pc=p=>p>=85?"var(--green)":p>=75?"var(--teal)":p>=60?"var(--amber)":"var(--red)";
+function ring(p,sz,sw,col,track){const r=(sz-sw)/2,C=2*Math.PI*r;return `<svg class="ring" width="${sz}" height="${sz}"><circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="${track||'var(--soft)'}" stroke-width="${sw}"/><circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="${col}" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-Math.max(0,Math.min(100,p||0))/100)}"/></svg>`}
+const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+function streak(){let n=0;const d=new Date();if(!S.days[today()])d.setDate(d.getDate()-1);for(;;){const k=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");if(!S.days[k])break;n++;d.setDate(d.getDate()-1)}return n}
 let timerInt=null;
-let curTab="dash";function nav(t){curTab=t;clearInterval(timerInt);$("nav").innerHTML=TABS.map(([k,n])=>`<button class="${k==t?'on':''}" onclick="nav('${k}')">${n}</button>`).join("");window["v_"+t]();scrollTo(0,0)}
-function rec(q,ok){const d=S.dc[DEV]||(S.dc[DEV]={});const x=d[q.id]||(d[q.id]=[0,0]);ok?x[0]++:x[1]++;rebuild();setKV("missed",q.id,ok?0:1)}
+let curTab="dash";function nav(t){curTab=t;clearInterval(timerInt);$("nav").innerHTML=TABS.map(([k,n])=>`<button class="${k==t?'on':''}" onclick="nav('${k}')" aria-label="${n}">${ico(k)}<span>${n}</span></button>`).join("");$("ttl").textContent=TTL[t];app.classList.remove("anim");void app.offsetWidth;app.classList.add("anim");window["v_"+t]();scrollTo(0,0)}
+function rec(q,ok){const d=S.dc[DEV]||(S.dc[DEV]={});const x=d[q.id]||(d[q.id]=[0,0]);ok?x[0]++:x[1]++;rebuild();if(!S.days[today()])S.days[today()]=1,S.ts["days:"+today()]=Date.now();setKV("missed",q.id,ok?0:1)}
 function topicStats(t){let c=0,w=0,seen=0,n=0;Q.forEach(q=>{if(q[0]!=t)return;n++;const s=S.st[q.id];if(s){seen++;c+=s.c;w+=s.w}});return{c,w,seen,n,p:c+w?Math.round(100*c/(c+w)):null}}
 
 // ---- Readiness score (modeled on CE Shop competency score / Prep xL "90% before testing" guidance)
@@ -363,16 +434,16 @@ const ex=S.exams.slice(-3);let r=tot;if(ex.length){const avg=ex.reduce((a,e)=>a+
 function readyCard(){const R=readiness();const col=R.r>=85?'#1e8e3e':R.r>=75?'#f9a825':'#c62828';
 const msg=R.r>=85&&R.ex>=2?"Ready: you're scoring well above 75% across topics and simulators. Book/keep your test date.":R.r>=75?"Close: aim for consistent 85–90% on simulators before test day (what passing Reddit users report).":"Not yet: drill weakest topics in Practice until you're hitting ~90%, then take a simulator.";
 return `<div class="card"><h2>Pass Readiness: <span style="color:${col}">${R.r}%</span></h2><div class="bar"><i style="width:${R.r}%;background:${col}"></i></div><p><small>Bank coverage ${R.cov}% · ${R.ex} recent simulator(s) counted</small></p><p>${msg}</p></div>`}
-function confRow(t){const c=S.conf[t]||0;return [1,2,3].map(n=>`<button class="tag" style="border:0;cursor:pointer;${c==n?'background:#1f4e79;color:#fff':''}" onclick="setKV('conf','${t}',${n});nav('dash')">${["","Low","Med","High"][n]}</button>`).join(" ")}
+function confRow(t){const c=S.conf[t]||0;return [1,2,3].map(n=>`<button class="tag ${c==n?'on':''}" onclick="setKV('conf','${t}',${n});nav('dash')">${["","Low","Med","High"][n]}</button>`).join(" ")}
 // ---- Flashcards (MEC/Prep xL/Mometrix style): built from notes + key Q&A
 function fcDeck(t){const d=[];NOTES.forEach((n,i)=>{if(t!="all"&&n[0]!=t)return;n[2].split(/(?<=\.)\s+(?=[A-Z0-9])/).forEach((x,j)=>{const m=x.match(/^([^:]{3,60}):\s*(.+)$/);if(m)d.push({id:"n"+i+"_"+j,f:m[1]+" ("+n[1]+")",b:m[2],t:n[0]})})});
 Q.forEach(q=>{if((t=="all"||q[0]==t)&&q[2].length<170)d.push({id:"q"+q.id,f:q[2],b:q[3][q[4]]+" — "+q[5],t:q[0]})});return d}
 function v_fc(){app.innerHTML=`<div class="card"><h2>Flashcards</h2><p><select id="ft"><option value="all">All topics</option>${Object.keys(TOPICS).map(t=>`<option value="${t}">${TOPICS[t][0]}</option>`).join("")}</select> <label><input type="checkbox" id="fu" checked> Skip cards I know</label></p><button class="btn" onclick="runFc()">Start</button><p><small>Known: ${Object.values(S.fc).filter(x=>x).length}</small></p></div>`}
 function runFc(){let d=fcDeck($("ft").value);if($("fu").checked)d=d.filter(c=>!S.fc[c.id]);d=shuf(d);let i=0;
 function show(){if(i>=d.length){app.innerHTML=`<div class="card"><h2>Deck done!</h2><button class="btn" onclick="nav('fc')">Back</button></div>`;return}const c=d[i];
-app.innerHTML=`<div class="card"><span class="tag">${TOPICS[c.t][0]}</span> <small>${i+1}/${d.length}</small><h3>${esc(c.f)}</h3><div id="bk"></div><button class="btn" id="fl2">Flip</button></div>`;
-$("fl2").onclick=()=>{$("bk").innerHTML=`<div class="exp">${esc(c.b)}</div><button class="btn" style="background:#1e8e3e" id="k1">Know it</button><button class="btn alt" id="k0">Still learning</button><button class="btn alt" onclick="nav('fc')">Quit</button>`;$("fl2").remove();
-$("k1").onclick=()=>{setKV("fc",c.id,1);i++;show()};$("k0").onclick=()=>{setKV("fc",c.id,0);d.push(c);i++;show()}}}show()}
+app.innerHTML=`<div class="card"><div class="qprog"><i style="width:${100*i/d.length}%"></i></div><div class="qhead"><span class="tag">${TOPICS[c.t][0]}</span><span>Card ${i+1} of ${d.length}</span></div><div class="flip" id="fcard"><div class="in"><div class="f">${esc(c.f)}<div class="hint">Tap to flip</div></div><div class="b">${esc(c.b)}</div></div></div><div id="bk"><button class="btn" id="fl2">Flip card</button><button class="btn alt" onclick="nav('fc')">Quit</button></div></div>`;
+const flipIt=()=>{if($("k1"))return;$("fcard").classList.add("on");$("bk").innerHTML=`<button class="btn" style="background:linear-gradient(135deg,#22c55e,#16a34a)" id="k1">✓ Know it</button><button class="btn alt" id="k0">↻ Still learning</button><button class="btn alt" onclick="nav('fc')">Quit</button>`;
+$("k1").onclick=()=>{setKV("fc",c.id,1);i++;show()};$("k0").onclick=()=>{setKV("fc",c.id,0);d.push(c);i++;show()}};$("fl2").onclick=flipIt;$("fcard").onclick=()=>{if($("k1"))$("fcard").classList.toggle("on");else flipIt()}}show()}
 // ---- Math drill: unlimited randomized calculation problems (MEC/Mometrix math sections)
 const R_=(a,b,st=1)=>Math.round((a+Math.random()*(b-a))/st)*st,$f=n=>"$"+n.toLocaleString(undefined,{maximumFractionDigits:2});
 const MATH=[
@@ -391,11 +462,18 @@ function runMath(){let n=0,r=0;function show(){const [q,a,u,e]=MATH[R_(0,MATH.le
 app.innerHTML=`<div class="card"><small>Problem ${n} · ${r} right</small><h3>${q}</h3><p>${u=="$"?"$":""}<input id="ma" inputmode="decimal" style="font-size:1.1rem;padding:8px;width:160px">${u=="%"?" %":""}</p><button class="btn" id="mc">Check</button><button class="btn alt" onclick="nav('math')">Quit</button><div id="me"></div></div>`;$("ma").focus();
 $("mc").onclick=()=>{const v=parseFloat($("ma").value.replace(/[$,%\s]/g,""));const ok=Math.abs(v-a)<=(u=="$"?1:0.1);{const m=S.dm[DEV]||(S.dm[DEV]=[0,0]);ok?(r++,m[0]++):m[1]++;rebuild();save()}
 $("me").innerHTML=`<div class="exp"><b>${ok?"Correct!":"Answer: "+(u=="$"?$f(a):a+"%")}</b><br>${e}</div><button class="btn" id="mn">Next</button>`;$("mc").remove();$("mn").onclick=show}}show()}
-function v_dash(){let h=readyCard()+syncCard()+`<div class="card"><h2>Progress by topic</h2><table><tr><th>Topic (weight)</th><th>Seen</th><th>Accuracy</th><th>My confidence</th></tr>`;
-for(const t in TOPICS){const s=topicStats(t);h+=`<tr><td>${TOPICS[t][0]} (${TOPICS[t][1]}%)</td><td>${s.seen}/${s.n}</td><td>${s.p==null?"—":s.p+"%"}<div class="bar"><i style="width:${s.p||0}%;background:${s.p>=75?'#1e8e3e':'#f9a825'}"></i></div></td><td>${confRow(t)}</td></tr>`}
-h+=`</table><p>Missed questions to review: <b>${Object.values(S.missed).filter(x=>x).length}</b></p></div><div class="card"><h3>Exam simulator history</h3>`;
-h+=S.exams.length?`<table>${S.exams.slice().reverse().map(e=>`<tr><td>${e.d}</td><td class="${e.p>=75?'pass':'fail'}">${e.p}% ${e.p>=75?'PASS':'FAIL'}</td><td>${e.m} min</td></tr>`).join("")}</table>`:"<p>No simulators yet.</p>";
-h+=`</div><div class="card"><button class="btn" onclick="nav('quiz')">Practice</button><button class="btn" onclick="nav('mock')">Exam simulator</button><button class="btn alt" onclick="exportP()">Export backup</button><button class="btn alt" onclick="$('imp').click()">Import backup</button><input type="file" id="imp" accept=".json,application/json" style="display:none" onchange="importP(this)"><button class="btn alt" onclick="if(confirm('Reset all progress?')){localStorage.removeItem(K);location.reload();nav('dash')}">Reset progress</button></div>`;app.innerHTML=h}
+function v_dash(){const R=readiness(),days=Math.max(0,Math.ceil((TEST-new Date())/864e5)),stk=streak(),answered=Object.values(S.st).reduce((a,x)=>a+x.c+x.w,0),miss=Object.values(S.missed).filter(x=>x).length;
+const msg=R.r>=85&&R.ex>=2?"You're ready. Scores are well above 75% across topics and simulators — keep your test date.":R.r>=75?"Close! Aim for consistent 85–90% on simulators before test day.":"Keep building. Drill weak topics until you're hitting ~90%, then take a simulator.";
+const last=S.exams[S.exams.length-1];
+let h=`<div class="cols"><div class="card hero s12"><div class="gauge">${ring(R.r,180,16,pc(R.r),"#ffffff22")}<div class="lbl"><b>${R.r}%</b><span>Pass readiness</span></div></div><div><small style="text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#5fe3d5">Readiness score</small><h2 style="font-size:1.6rem">${R.r>=85&&R.ex>=2?"Exam ready":R.r>=75?"Almost there":"Building mastery"}</h2><p>${msg}</p><p><small>Bank coverage ${R.cov}% · ${R.ex} recent simulator(s) counted · passing score 75%</small></p><button class="btn" onclick="nav('quiz')">${ico("quiz")} Practice now</button><button class="btn alt" style="background:#ffffff1a;color:#fff;border-color:#ffffff33" onclick="nav('mock')">${ico("mock")} Exam simulator</button></div></div>
+<div class="card s4 st"><div class="stat"><div class="ic">📅</div><div><b>${days}</b><small>days until test</small></div></div></div>
+<div class="card s4 st"><div class="stat"><div class="ic">🔥</div><div><b>${stk}</b><small>day study streak</small></div></div></div>
+<div class="card s4 st"><div class="stat"><div class="ic">✅</div><div><b>${answered}</b><small>questions answered · ${miss} to review</small></div></div></div>
+<div class="card s8"><h3>Progress by topic</h3>`;
+for(const t in TOPICS){const st=topicStats(t);h+=`<div class="topic"><div class="mini">${ring(st.p,56,6,st.p==null?'var(--line)':pc(st.p))}<span>${st.p==null?"—":st.p+"%"}</span></div><div class="nm"><b>${TOPICS[t][0]}</b><small>${TOPICS[t][1]}% of exam · ${st.seen}/${st.n} seen</small><div class="bar" style="margin-top:6px;height:6px"><i style="width:${Math.round(100*st.seen/st.n)}%"></i></div></div><div class="conf" style="text-align:right"><small>Confidence</small><br>${confRow(t)}</div></div>`}
+h+=`</div><div class="card s4"><h3>Simulator history</h3>`+(S.exams.length?`<div class="chart">${S.exams.slice(-6).map((e,i)=>`<div class="row"><span>${e.d}</span><div class="bar"><i style="width:${e.p}%;background:${pc(e.p)}"></i></div><b class="${e.p>=75?'pass':'fail'}">${e.p}%</b></div>`).join("")}</div>${last?`<p><small>Last: ${last.p}% in ${last.m} min — ${last.p>=75?"PASS":"below 75%"}</small></p>`:""}`:`<p><small>No simulators yet. Take one once you're scoring ~90% in practice.</small></p><button class="btn" onclick="nav('mock')">Start simulator</button>`)+`</div>
+<div class="s12">${syncCard()}</div>
+<div class="card s12"><h3>Backup</h3><button class="btn alt" onclick="exportP()">Export backup</button><button class="btn alt" onclick="$('imp').click()">Import backup</button><input type="file" id="imp" accept=".json,application/json" style="display:none" onchange="importP(this)"><button class="btn alt" onclick="if(confirm('Reset all progress?')){localStorage.removeItem(K);location.reload();nav('dash')}">Reset progress</button></div></div>`;app.innerHTML=h}
 function v_notes(){app.innerHTML=Object.keys(TOPICS).map(t=>`<h3>${TOPICS[t][0]} — ${TOPICS[t][1]}%</h3>`+NOTES.filter(n=>n[0]==t).map(n=>`<details><summary>${n[1]}</summary><p>${n[2]}</p></details>`).join("")).join("")}
 function v_quiz(){app.innerHTML=`<div class="card"><h2>Quiz by topic</h2><p><select id="qt"><option value="all">All topics</option>${Object.keys(TOPICS).map(t=>`<option value="${t}">${TOPICS[t][0]} (${Q.filter(q=>q[0]==t).length})</option>`).join("")}</select></p>
 <p><select id="qn"><option>10</option><option selected>25</option><option>50</option><option value="999">All</option></select> questions &nbsp; <label><input type="checkbox" id="qu"> Unseen/weak first</label></p><p><label><input type="radio" name="qm" id="qms" checked> Study mode (instant answer + explanation)</label><br><label><input type="radio" name="qm" id="qme"> Exam mode (score & explanations at the end)</label></p><button class="btn" onclick="startQuiz()">Start</button></div>`}
@@ -403,16 +481,16 @@ function startQuiz(pool){const t=pool?null:$("qt").value,n=pool?999:+$("qn").val
 if(!pool&&$("qu").checked)p.sort((a,b)=>score(a)-score(b));runPractice(p.slice(0,n),pool?"review":"quiz",!pool&&$("qme").checked)}
 function score(q){const s=S.st[q.id];return s?(s.c-s.w*2):-1}
 function runPractice(list,back,exam){if(exam)return runExamQuiz(list,back);let i=0,right=0;const opts=list.map(q=>shuf([0,1,2,3]));
-function show(){if(i>=list.length){app.innerHTML=`<div class="card"><h2>Done: ${right}/${list.length} (${Math.round(100*right/list.length)}%)</h2><button class="btn" onclick="nav('${back}')">Back</button><button class="btn alt" onclick="nav('dash')">Dashboard</button></div>`;return}
-const q=list[i];app.innerHTML=`<div class="card"><div><span class="tag">${TOPICS[q[0]][0]}</span> <span class="tag">${q[1]}</span> <small>Q ${i+1}/${list.length} · score ${right}</small></div><h3>${esc(q[2])}</h3><div id="op">${opts[i].map(k=>`<button class="opt" data-k="${k}">${esc(q[3][k])}</button>`).join("")}</div><div id="ex"></div></div>`;
+function show(){if(i>=list.length){const pp=Math.round(100*right/list.length);app.innerHTML=`<div class="card" style="text-align:center"><div class="gauge" style="margin:0 auto">${ring(pp,180,16,pc(pp))}<div class="lbl"><b>${pp}%</b><span>${right}/${list.length} correct</span></div></div><h2>${pp>=90?"Excellent! 🎉":pp>=75?"Passing score — nice work":"Keep practicing"}</h2><button class="btn" onclick="nav('${back}')">Back</button><button class="btn alt" onclick="nav('dash')">Dashboard</button></div>`;return}
+const q=list[i];app.innerHTML=`<div class="card"><div class="qprog"><i style="width:${100*i/list.length}%"></i></div><div class="qhead"><div><span class="tag">${TOPICS[q[0]][0]}</span><span class="tag">${q[1]}</span></div><span>Question ${i+1} of ${list.length} · ✓ ${right}</span></div><div class="qtext">${esc(q[2])}</div><div id="op">${opts[i].map(k=>`<button class="opt" data-k="${k}">${esc(q[3][k])}</button>`).join("")}</div><div id="ex"></div></div>`;
 app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if($("ex").innerHTML)return;const k=+b.dataset.k,ok=k==q[4];if(ok)right++;rec(q,ok);
 app.querySelectorAll(".opt").forEach(x=>{if(+x.dataset.k==q[4])x.classList.add("c")});if(!ok)b.classList.add("w");
-$("ex").innerHTML=`<div class="exp"><b>${ok?"Correct!":"Incorrect."}</b> ${esc(q[5])}</div><button class="btn" id="nx">Next</button><button class="btn alt" id="bmk">${S.bm[q.id]?"★ Saved":"☆ Save"}</button><button class="btn alt" onclick="nav('${back}')">Quit</button>`;$("bmk").onclick=()=>{setKV("bm",q.id,S.bm[q.id]?0:1);$("bmk").textContent=S.bm[q.id]?"★ Saved":"☆ Save"};$("nx").onclick=()=>{i++;show()}})}show()}
+$("ex").innerHTML=`<div class="exp" style="border-color:${ok?'var(--green)':'var(--red)'}"><b class="${ok?'pass':'fail'}">${ok?"✓ Correct!":"✕ Incorrect."}</b> ${esc(q[5])}</div><button class="btn" id="nx">Next</button><button class="btn alt" id="bmk">${S.bm[q.id]?"★ Saved":"☆ Save"}</button><button class="btn alt" onclick="nav('${back}')">Quit</button>`;$("bmk").onclick=()=>{setKV("bm",q.id,S.bm[q.id]?0:1);$("bmk").textContent=S.bm[q.id]?"★ Saved":"☆ Save"};$("nx").onclick=()=>{i++;show()}})}show()}
 
 function runExamQuiz(list,back){let i=0;const ans={},opts=list.map(()=>shuf([0,1,2,3]));
 function show(){if(i>=list.length){let c=0;list.forEach((q,j)=>{const ok=ans[j]===q[4];if(ok)c++;rec(q,ok)});
 app.innerHTML=`<div class="card"><h2>${c}/${list.length} (${Math.round(100*c/list.length)}%)</h2><button class="btn" onclick="nav('${back}')">Back</button></div>`+list.map((q,j)=>ans[j]===q[4]?"":`<div class="card"><p><b>${esc(q[2])}</b></p><p class="fail">Yours: ${ans[j]==null?"(blank)":esc(q[3][ans[j]])}</p><p class="pass">Correct: ${esc(q[3][q[4]])}</p><div class="exp">${esc(q[5])}</div></div>`).join("");return}
-const q=list[i];app.innerHTML=`<div class="card"><small>Q ${i+1}/${list.length} · exam mode</small><h3>${esc(q[2])}</h3>${opts[i].map(k=>`<button class="opt ${ans[i]===k?'sel':''}" data-k="${k}">${esc(q[3][k])}</button>`).join("")}<button class="btn" id="nx">${i==list.length-1?"Finish":"Next ▶"}</button></div>`;
+const q=list[i];app.innerHTML=`<div class="card"><div class="qprog"><i style="width:${100*i/list.length}%"></i></div><div class="qhead"><span class="tag">Exam mode</span><span>Question ${i+1} of ${list.length}</span></div><div class="qtext">${esc(q[2])}</div>${opts[i].map(k=>`<button class="opt ${ans[i]===k?'sel':''}" data-k="${k}">${esc(q[3][k])}</button>`).join("")}<button class="btn" id="nx">${i==list.length-1?"Finish":"Next ▶"}</button></div>`;
 app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ans[i]=+b.dataset.k;show()});$("nx").onclick=()=>{i++;show()}}show()}
 function v_review(){const m=Q.filter(q=>S.missed[q.id]),bk=Q.filter(q=>S.bm[q.id]);app.innerHTML=`<div class="card"><h2>Missed questions (${m.length})</h2><p>Answer correctly to clear a question from this list.</p>${m.length?`<button class="btn" onclick="startQuiz(Q.filter(q=>S.missed[q.id]))">Drill missed questions</button>`:""}${bk.length?`<button class="btn alt" onclick="startQuiz(Q.filter(q=>S.bm[q.id]))">Drill ${bk.length} saved ★</button>`:""}</div>`+m.map(q=>`<div class="card"><span class="tag">${TOPICS[q[0]][0]}</span><p><b>${esc(q[2])}</b></p><p>✔ ${esc(q[3][q[4]])}</p><div class="exp">${esc(q[5])}</div></div>`).join("")}
 const MOCK={fed:30,state:14,gen:25,orig:33,ethics:23};const MN=125;
@@ -424,14 +502,14 @@ function runMock(){const M=JSON.parse(localStorage.getItem(K+"_mock"));const sv=
 function tick(){const r=M.end-Date.now();if(r<=0){finish();return}const e=$("tm");if(e)e.textContent=Math.floor(r/60000)+":"+String(Math.floor(r/1000)%60).padStart(2,"0")}
 clearInterval(timerInt);timerInt=setInterval(tick,1000);
 function show(){const q=Q[M.ids[M.i]];const a=M.ans[M.i];const done=Object.keys(M.ans).length;
-app.innerHTML=`<div class="card"><div style="display:flex;justify-content:space-between"><span>Q ${M.i+1}/${M.ids.length} · answered ${done}</span><span class="timer">⏱ <span id="tm"></span></span></div><h3>${esc(q[2])}</h3>${M.ord[M.i].map(k=>`<button class="opt ${a===k?'sel':''}" data-k="${k}">${esc(q[3][k])}</button>`).join("")}
-<button class="btn alt" id="pv">◀ Prev</button><button class="btn" id="nx">Next ▶</button><button class="btn alt" id="fl">${M.fl[M.i]?"Unflag":"Flag"}</button><button class="btn" style="background:#c62828" id="sb">Submit exam</button></div><div class="card grid">${M.ids.map((_,j)=>`<b class="${M.ans[j]!=null?'a':''} ${M.fl[j]?'f':''}" data-j="${j}">${j+1}</b>`).join("")}</div>`;tick();
+app.innerHTML=`<div class="card"><div class="qprog"><i style="width:${100*done/M.ids.length}%"></i></div><div class="qhead"><span>Question <b>${M.i+1}</b> of ${M.ids.length} · ${done} answered</span><span class="timer">⏱ <span id="tm"></span></span></div><div class="qtext">${esc(q[2])}</div>${M.ord[M.i].map(k=>`<button class="opt ${a===k?'sel':''}" data-k="${k}">${esc(q[3][k])}</button>`).join("")}
+<button class="btn alt" id="pv">◀ Prev</button><button class="btn" id="nx">Next ▶</button><button class="btn alt" id="fl">${M.fl[M.i]?"Unflag":"Flag"}</button><button class="btn" style="background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:none" id="sb">Submit exam</button></div><div class="card grid">${M.ids.map((_,j)=>`<b class="${M.ans[j]!=null?'a':''} ${M.fl[j]?'f':''}" data-j="${j}">${j+1}</b>`).join("")}</div>`;tick();
 app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{M.ans[M.i]=+b.dataset.k;sv();show()});
 $("pv").onclick=()=>{if(M.i>0){M.i--;sv();show()}};$("nx").onclick=()=>{if(M.i<M.ids.length-1){M.i++;sv();show()}};$("fl").onclick=()=>{M.fl[M.i]=!M.fl[M.i];sv();show()};
 $("sb").onclick=()=>{if(confirm(`Submit? ${M.ids.length-done} unanswered.`))finish()};app.querySelectorAll(".grid b").forEach(b=>b.onclick=()=>{M.i=+b.dataset.j;sv();show()})}
 function finish(){clearInterval(timerInt);let c=0;const bt={};M.ids.forEach((id,j)=>{const q=Q[id],ok=M.ans[j]===q[4];if(ok)c++;rec(q,ok);const b=bt[q[0]]||(bt[q[0]]={c:0,n:0});b.n++;if(ok)b.c++});
 const p=Math.round(1000*c/M.ids.length)/10,m=Math.round((Math.min(Date.now(),M.end)-M.start)/60000);S.exams.push({id:M.start+"-"+DEV,d:new Date().toLocaleDateString(),p,m});save();localStorage.removeItem(K+"_mock");
-app.innerHTML=`<div class="card"><h2 class="${p>=75?'pass':'fail'}">${p}% — ${p>=75?"PASS":"Below 75%"}</h2><p>${c}/${M.ids.length} correct in ${m} minutes.</p><table>${Object.keys(bt).map(t=>`<tr><td>${TOPICS[t][0]}</td><td>${bt[t].c}/${bt[t].n} (${Math.round(100*bt[t].c/bt[t].n)}%)</td></tr>`).join("")}</table><button class="btn" onclick="nav('review')">Review missed</button></div>`+
+app.innerHTML=`<div class="cols"><div class="card hero s12"><div class="gauge">${ring(p,180,16,p>=75?'var(--green)':'var(--red)',"#ffffff22")}<div class="lbl"><b>${p}%</b><span>${c}/${M.ids.length}</span></div></div><div><h2 style="font-size:1.8rem">${p>=75?"PASS 🎉":"Below 75% — not yet"}</h2><p>${c} of ${M.ids.length} correct in ${m} minutes. Passing is 75%.</p></div></div><div class="card s12"><h3>Score by topic</h3><div class="chart">${Object.keys(bt).map(t=>{const tp=Math.round(100*bt[t].c/bt[t].n);return`<div class="row"><span>${TOPICS[t][0]}<br><small>${bt[t].c}/${bt[t].n}</small></span><div class="bar"><i style="width:${tp}%;background:${pc(tp)}"></i></div><b>${tp}%</b></div>`}).join("")}</div><button class="btn" onclick="nav('review')">Review missed</button></div></div>`+
 M.ids.map((id,j)=>{const q=Q[id];if(M.ans[j]===q[4])return"";return`<div class="card"><p><b>${j+1}. ${esc(q[2])}</b></p><p class="fail">Your answer: ${M.ans[j]==null?"(blank)":esc(q[3][M.ans[j]])}</p><p class="pass">Correct: ${esc(q[3][q[4]])}</p><div class="exp">${esc(q[5])}</div></div>`}).join("")}
 show()}
 function v_plan(){const st=new Date(2026,9,20);app.innerHTML=`<div class="card"><h2>14-Day Study Plan</h2><p>Oct 20 → Nov 2, 2026. ~1.5–2.5 hrs/day. Check off each day.</p></div>`+PLAN.map((p,i)=>{const d=new Date(st);d.setDate(st.getDate()+i);return`<div class="card"><label><input type="checkbox" ${S.plan[i]?"checked":""} onchange="setKV('plan',${i},this.checked)"> <b>Day ${i+1} — ${d.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}</b></label><p>${p}</p></div>`}).join("")}
@@ -445,12 +523,12 @@ function setStatus(t){localStorage.setItem(SK+"_st",t);const e=document.getEleme
 function mergeS(a,b){// merge remote b into local a (returns new)
 const o=JSON.parse(JSON.stringify(a));o.dc=o.dc||{};for(const d in b.dc||{}){const L=o.dc[d]||(o.dc[d]={}),Rm=b.dc[d];for(const id in Rm){const x=L[id]||[0,0],y=Rm[id];L[id]=[Math.max(x[0],y[0]),Math.max(x[1],y[1])]}}
 o.dm=o.dm||{};for(const d in b.dm||{}){const x=o.dm[d]||[0,0],y=b.dm[d];o.dm[d]=[Math.max(x[0],y[0]),Math.max(x[1],y[1])]}
-o.ts=o.ts||{};for(const f of["missed","bm","conf","fc","plan"]){o[f]=o[f]||{};const bf=(b[f])||{};for(const k in bf){const tk=f+":"+k,tb=(b.ts||{})[tk]||0,ta=o.ts[tk]||0;if(!(k in o[f])||tb>ta){o[f][k]=bf[k];if(tb)o.ts[tk]=tb}}}
+o.ts=o.ts||{};for(const f of["missed","bm","conf","fc","plan","days"]){o[f]=o[f]||{};const bf=(b[f])||{};for(const k in bf){const tk=f+":"+k,tb=(b.ts||{})[tk]||0,ta=o.ts[tk]||0;if(!(k in o[f])||tb>ta){o[f][k]=bf[k];if(tb)o.ts[tk]=tb}}}
 const ex={};(o.exams||[]).concat(b.exams||[]).forEach(e=>{ex[e.id||(e.d+"|"+e.p+"|"+e.m)]=e});o.exams=Object.values(ex).sort((x,y)=>String(x.id||"").localeCompare(String(y.id||"")));return o}
 async function syncNow(){const c=syncCode();if(!c||syncBusy)return;if(!navigator.onLine){setStatus("Offline — will sync when back online");return}syncBusy=true;
 try{const r=await fetch(SYNC_URL+syncKey(c)+"?_="+Date.now(),{cache:"no-store"});const t=(await r.text()).trim();let remote=null;if(t){try{remote=JSON.parse(t)}catch(e){}}
 const before=JSON.stringify(S);if(remote&&remote.S){S=mergeS(S,remote.S);const D=S.dc;rebuild();localStorage.setItem(K,JSON.stringify(S))}
-const out=JSON.stringify({app:"safemlo",v:2,at:Date.now(),S:{dc:S.dc,dm:S.dm,missed:S.missed,bm:S.bm,conf:S.conf,fc:S.fc,plan:S.plan,ts:S.ts,exams:S.exams}});
+const out=JSON.stringify({app:"safemlo",v:2,at:Date.now(),S:{dc:S.dc,dm:S.dm,missed:S.missed,bm:S.bm,conf:S.conf,fc:S.fc,plan:S.plan,days:S.days,ts:S.ts,exams:S.exams}});
 const remoteSame=remote&&JSON.stringify(mergeS(remote.S,S))===JSON.stringify(remote.S);
 if(!remoteSame){const pr=await fetch(SYNC_URL+"update",{method:"POST",body:new URLSearchParams({key:syncKey(c),value:out}),keepalive:out.length<60000});const j=await pr.json();if(j.status!=1)throw new Error("write failed")}
 localStorage.removeItem(SK+"_dirty");setStatus("Synced "+new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"}));
@@ -464,5 +542,5 @@ function syncCard(){const c=syncCode();return `<div class="card"><h3>☁️ Sync
 window.addEventListener("online",syncNow);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="hidden"&&localStorage.getItem(SK+"_dirty"))syncNow();if(document.visibilityState=="visible")syncNow()});
 setInterval(()=>{if(localStorage.getItem(SK+"_dirty"))syncNow()},60000);
 if("serviceWorker" in navigator&&location.protocol!="file:")navigator.serviceWorker.register("sw.js");
-nav("dash");syncNow();
+applyTheme();nav("dash");syncNow();
 </script></body></html>
